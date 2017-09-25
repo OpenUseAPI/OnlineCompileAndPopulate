@@ -21,8 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  if(req.body.pass=="we are secure"){
-    console.log(req.body.program);
+   console.log(req.body.program);
     writeToFile(req.body.program);
     var url = "python one.py";
     exec(url,{maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
@@ -32,7 +31,7 @@ router.post('/', function(req, res, next) {
           res.json({'res': String(error)});
       }
     });
-  }
+  
   //res.json({"res": true});
 });
 
