@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var exec = require('child_process').exec;
+var app = express();
 
 function writeToFile(message){
   fs.writeFile('one.py', message, function(err) {
@@ -20,16 +21,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body.program);
-  writeToFile(req.body.program);
-  var url = "python one.py";
-  exec(url,{maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
-    res.json({ 'res': String(stdout) });
-    //console.log('stderr: ' + stderr);
-    if (error !== null) {
-        console.log('exec error: ' + error);
-    }
-  });
+  if(req.body.pass=="we are secure"){
+    console.log(req.body.program);
+    writeToFile(req.body.program);
+    var url = "python one.py";
+    exec(url,{maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
+      res.json({ 'res': String(stdout) });
+      //console.log('stderr: ' + stderr);
+      if (error !== null) {
+          res.json({'res': String(error)});
+      }
+    });
+  }
   //res.json({"res": true});
 });
 
