@@ -29,7 +29,9 @@ router.post('/', function(req, res, next) {
       if (error !== null) {
         res.json({'res': String(error)});
       }
-      res.json({ 'res': String(stdout) });
+      else{
+        res.json({ 'res': String(stdout) });
+      }
       //console.log('stderr: ' + stderr);
       
     });
