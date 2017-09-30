@@ -9,4 +9,4 @@ Clone instructions:
 2. navigate to the folder and run <b>npm install</b>
 3. then run <b>npm start</b>
 
-If you like this, please do give us a start. :p
+If you like this, please do give us a star. :p
